@@ -1,38 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-</head>
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      name: 'ARC',
-      repo: 'https://github.com/TAAL-GmbH/arc',
-      tabs: {
-        persist    : true,      // default
-        sync       : true,      // default
-        theme      : 'classic', // default
-        tabComments: true,      // default
-        tabHeadings: true       // default
-      },
-      noCompileLinks: ['/arc/api.html'],
-      auto2top: true,
-      plantuml: {
-        skin: 'default',
-      },
-    }
-  </script>
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
-  <script src="//unpkg.com/docsify-plantuml/dist/docsify-plantuml.min.js"></script>
-</body>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>GorillaPool Documentation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span class="icon fa-btc"></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>GorillaPool</h1>
+								<p><!--[-->The Banana Processing Company <!--]--><br />
+								</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#junglebus">JungleBus</a></li>
+								<li><a href="#arc">ARC</a></li>
+								<li><a href="#mapi">mAPI</a></li>
+								<li><a href="#gorillapool">GorillaPool</a></li>
+								<!--<li><a href="#elements">Elements</a></li>-->
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- junglebus -->
+							<article id="junglebus">
+								<h2 class="major">JungleBus</h2>
+								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+								<p>JungleBus is an indexer that indexes all the transactions on the Bitcoin blockchain. All transactions are parsed and processed into a database, with special indexes created for data transactions.</p>
+								<p><a href='https://gorillapool.github.io/junglebus'>JungleBus Documentation</a></p>
+							</article>
+
+						<!-- arc -->
+							<article id="arc">
+								<h2 class="major">ARC</h2>
+								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
+								<p>ARC is a next-gen transaction processor for Bitcoin that keeps track of the life cycle of a transaction as it is processed by the Bitcoin network.</p>
+								<p><a href='https://gorillapool.github.io/arc'>ARC Documentation</a></p>
+							</article>
+
+						<!-- mapi -->
+							<article id="mapi">
+								<h2 class="major">mAPI</h2>
+								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
+								<p>Merchant API (mAPI) is a service for checking node policy, fee requirements and submitting transactions to the Bitcoin network. </p>
+								<p><a href='https://mapi.gorillapool.io/swagger/'>mAPI Documentation<a></p>
+							</article>
+
+						<!-- gorillapool -->
+							<article id="gorillapool">
+								<h2 class="major">GorillaPool</h2>
+								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
+								<p>GorillaPool is a distributed Bitcoin node and public mining pool. </p>
+								<p><a href='https://gorillapool.io/?#bsv/faq'>GorillaPool Documentation<a></p>
+							</article>
+
+
+
+
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; <a href="https://gorillapool.com">GorillaPool</a></p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
