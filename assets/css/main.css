@@ -1577,6 +1577,14 @@
 			text-transform: uppercase;
 		}
 
+		#footer .attribution {
+			letter-spacing: 0.1rem;
+			font-size: 0.3rem;
+			opacity: 0.55;
+			margin-bottom: 0;
+			text-transform: uppercase;
+		}
+
 		body.is-article-visible #footer {
 			-moz-transform: scale(0.95);
 			-webkit-transform: scale(0.95);
