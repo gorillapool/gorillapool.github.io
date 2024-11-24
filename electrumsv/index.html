@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <title>Use ElectrumSV with GorillaPool | Documentation by GorillaPool</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/stroke.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="js/syntax-highlighter/styles/shCore.css" media="all">
+    <link rel="stylesheet" type="text/css" href="js/syntax-highlighter/styles/shThemeRDark.css" media="all">
+
+    <!-- CUSTOM -->
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+
+    <script>
+        var mybutton = document.getElementById("myBtn");
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+        function topFunction() {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+            document.documentElement.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelector('#mode').addEventListener('click',()=>{
+                document.querySelector('html').classList.toggle('dark');
+            })
+        });
+
+
+    </script>
+
+    <div id="wrapper">
+
+        <div id="mode" >
+            <div class="dark">
+                <svg aria-hidden="true" viewBox="0 0 512 512">
+                    <title>lightmode</title>
+                    <path fill="currentColor" d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"></path>
+                </svg>
+            </div>
+            <div class="light">
+                <svg aria-hidden="true" viewBox="0 0 512 512">
+                    <title>darkmode</title>
+                    <path fill="currentColor" d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"></path>
+                </svg>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <section id="top" class="section docs-heading">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="big-title text-center">
+                            <h1>Using ElectrumSV with GorillaPool</h1>
+                            <p class="lead">Block broken servers and get your wallet connected</p>
+                        </div>
+                        <!-- end title -->
+                    </div>
+                    <!-- end 12 -->
+                </div>
+                <!-- end row -->
+
+                <hr>
+
+            </section>
+            <!-- end section -->
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <nav class="docs-sidebar" data-spy="affix" data-offset-top="300" data-offset-bottom="200" role="navigation">
+                        <ul class="nav">
+                            <li><a href="#line1">Identify Broken Servers</a></li>
+                            <li><a href="#line2">Locate Configuration File</a></li>
+                            <li><a href="#line3">Blacklist Problem Server</a></li>
+                            <li><a href="#line4">Connect to GorillaPool</a></li>
+                            <li><a href="#line8">Support</a></li>
+                            <li><a href="#line11">Credits</a></li>
+                        </ul>
+                    </nav >
+                </div>
+                <div class="col-md-9">
+                    <section class="welcome">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                               <h2 class="dark-text">GorillaPool Server Details<hr></h2>
+                                <div class="row">
+
+                                    <div class="col-md-12 full">
+                                        <div class="intro1">
+                                            <ul>
+                                                <li><strong>Server : </strong>electrumx.gorillapool.io</li>
+                                                <li><strong>Connection Type : </strong> SSL</li>
+                                                <li><strong>Port  : </strong> 50002</li>
+                                            </ul>
+                                        </div>
+
+                                        <hr>
+                                        <div>
+                                            <p>GorillaPool operates ElectrumX servers for the benefit of the BSV network.
+                                                
+                                                <br> You are free to connect and use our endpoint with your wallet.  This article will also help describe how to block broken or problematic servers preventing your wallet from connecting to ours.
+                                            </p>
+
+                                            <h4>Requirements</h4>
+                                            <p>We recommend the latest version of ElectrumSV, at the time of this writing v1.3.16.  You should ONLY download the wallet from the official source: <a href="https://electrumsv.io" target="_blank">electrumsv.io</a></p>
+
+                                            <div class="intro2 clearfix">
+                                                <p><i class="fa fa-exclamation-triangle"></i> Be careful when downloading ElectrumSV verify your download. Many bad actors have published fake versions that will steal your coins.
+                                                    <br> No support is provided for malware downloads.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- end row -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="line1" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">Identify Broken Servers <hr></h2>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>GorillaPool's ElectrumX servers are fully operational, but your wallet may have stored connection details for servers that are broken or no longer operational.  This may cause the wallet to fail to connect, even to functional endpoints.</p>
+
+                                
+                                <h4>Launching from command-line in Mac OS X</h4>
+                                <p>From Terminal or iTerm run the following:</p>
+                                <pre>> /Applications/ElectrumSV.app/Contents/MacOS/1.3.16 </pre>
+                                <img src="images/upload/electrum-broken.jpg" alt="" class="img-responsive img-thumbnail">
+
+                                <p>When launching ElectrumSV via command-line, you can often identify the problematic server as the below screenshot demonstates. The server causing the problem in this case is <strong>electrumx.bitcoinsv.io</strong>, and as of the time of this writing, I also had to blacklist <strong>sv.jochen-hoenicke.de</strong>.</p>
+
+  
+
+                    </section>
+                    <!-- end section -->
+
+                    <section id="line2" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">Locate Configuration File <hr></h2>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="intro2 clearfix">
+                            <p><i class="fa fa-apple"></i> The configuration file for ElectrumSV on Mac OS X can be found in a hidden directory under your home directory. 
+                                <br> /Users/[your username]/.electrum-sv  
+                                <br>
+                                To show hidden files and folders in Finder, use <pre>shift + cmd + period (.)</pre></p>
+                        </div>
+                        <br>
+                        <div class="intro2 clearfix">
+                            <p><i class="fa fa-windows"></i> The configuration file for ElectrumSV on Windows can be found in the AppData directory under your home folder
+                                <br> c:\Users\[your username]\AppData\Roaming\ElectrumSV
+                        </p>
+                        </div>
+                        <hr>
+
+
+                        <p>The configuration file you need to edit is 'config'.  Open it in a text editor to make the required changes.</p>
+
+                        <img src="images/upload/edit-config.png" alt="" class="img-responsive img-thumbnail">
+
+                        
+                        <hr>
+
+                        In Mac OS, you can also directly edit the config file from command line with the vim editor, or launch TextEdit by running one of the following from Terminal or iTerm:
+                        <pre>vim ~/.electrum-sv/config</pre>
+                        <pre>open -a TextEdit ~/.electrum-sv/config</pre>
+
+
+                    </section>
+                    <!-- end section -->
+
+                    <section id="line3" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">Blacklist Problem Server <hr></h2>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <h4>Locate the problem server in config</h4>
+
+                        <p>In your text editor, search for the problem server and locate the <strong>last_blacklisted</strong> value.</p> Ensure ElectrumSV is closed otherwise your changes will not be saved.  Alter the value from <strong>0</strong> to <strong>16919763430</strong>.  Save and close the file.
+
+                        <img src="images/upload/problem-server.png" alt="" class="img-responsive img-thumbnail">
+
+                        <hr>
+
+
+
+
+
+                    </section>
+                    <!-- end section -->
+
+                    <section id="line4" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">Connect to GorillaPool <hr></h2>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img src="images/upload/working-server.png" alt="" class="img-responsive img-thumbnail">
+                                <h4>electrumx.gorillapool.io</h4>
+                                <p>Configure GorillaPool's electrumx server in the 'Server' tab of ElectrumSV network preferences. You should be connected and syncing your wallet.  If not, you may need to repeat the above steps to blacklist additional problematic servers.</p>
+                            </div>
+                            <!-- end col -->
+
+
+
+
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section -->
+
+
+
+
+                    <section id="line8" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">Support <hr></h2>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Check the status of GorillaPool's ElectrumX server here: <a href="https://status.gorillapool.io/796130780" target="_blank">status.gorillapool.io</a></p>
+
+                                <p>Please visit our <a href="https://discord.com"><strong>discord</strong></a> to ask questions <a href="https://discord.gg/Mya97UJMAV" target="_blank">#general</a></p>
+
+                                <p>You can reach us on X <a href="https://x.com/minelikeanape"><strong>@minelikeanape</strong></a> </p>
+
+                                
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <strong>Before seeking support, please...</strong>
+                                <ul>
+                                    <li>* Make sure you are running the latest official ElectrumSV client.</li>
+                                    <li>* Make sure you have read through and attempted the directions in this article  before asking support.</li>
+                                    <li>* Make sure to double check there are not additional broken servers you need to also blacklist.</li>
+                                    <li>* Check the <a href="https://status.gorillapool.io/796130780" target="_blank">status</a> page to ensure our ElectrumX server is operational.</li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section -->
+
+
+
+
+                    <section id="line11" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">Credits <hr></h2>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <p>Thanks to <a href="https://roger-taylor.medium.com/blocking-a-bad-electrumsserver-c7f85c25d2a3" target="_blank">Roger Taylor</a> for originally describing this work-around.</p>                        
+                                <p>For more information about GorillaPool and to mine BSV with us, check <a href=" https://gorillapool.com" target="_blank">gorillapool.com</a>.</p>
+
+                                <p>Article authored by GorillaPool's <strong>$root</strong> if you would like to tip via Handcash.
+                            
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section -->
+                </div>
+                <!-- // end .col -->
+
+            </div>
+            <!-- // end .row -->
+
+        </div>
+        <!-- // end container -->
+
+    </div>
+    <!-- end wrapper -->
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/retina.js"></script>
+    <script src="js/jquery.fitvids.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+
+    <!-- CUSTOM PLUGINS -->
+    <script src="js/custom.js"></script>
+    <script src="js/main.js"></script>
+
+    <script src="js/syntax-highlighter/scripts/shCore.js"></script>
+    <script src="js/syntax-highlighter/scripts/shBrushXml.js"></script>
+    <script src="js/syntax-highlighter/scripts/shBrushCss.js"></script>
+    <script src="js/syntax-highlighter/scripts/shBrushJScript.js"></script>
+
+</body>
+
+</html>
